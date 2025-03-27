@@ -24,8 +24,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers(HttpMethod.GET, "/api/products").hasAnyRole("ADMINISTRADOR")
-                        .requestMatchers(HttpMethod.GET, "/api/products/**").hasRole("ADMINISTRADOR, USUARIO")
+                        .requestMatchers(HttpMethod.GET, "/api/products").hasAnyRole("ADMINISTRADOR", "USUARIO")
+                        .requestMatchers(HttpMethod.GET, "/api/products/**").hasAnyRole("ADMINISTRADOR", "USUARIO")
                         .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMINISTRADOR")
                         .requestMatchers(HttpMethod.PUT, "/api/products").hasRole("ADMINISTRADOR")
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMINISTRADOR")

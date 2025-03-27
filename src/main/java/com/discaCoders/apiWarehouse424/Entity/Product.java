@@ -1,10 +1,9 @@
 package com.discaCoders.apiWarehouse424.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -69,5 +68,21 @@ public class Product {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 '}';
+    }
+
+    public void increaseQuantity(int amount){
+        if(amount < 0){
+            throw new IllegalArgumentException("La cantidad debe ser positiva y mayor a cero");
+        }
+        this.quantity += amount;
+    }
+    public void decreaseQuantity(int amount){
+        if(amount < 0){
+            throw new IllegalArgumentException("La cantidad debe ser mayor que cero");
+        }
+        if ((this.quantity - amount) < 0){
+            throw new IllegalArgumentException("No hay suficiente stock");
+        }
+        this.quantity -= amount;
     }
 }
