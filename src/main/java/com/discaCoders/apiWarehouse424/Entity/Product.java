@@ -69,4 +69,20 @@ public class Product {
                 ", price=" + price +
                 '}';
     }
+
+    public void increaseQuantity(int amount){
+        if(amount < 0){
+            throw new IllegalArgumentException("La cantidad debe ser positiva y mayor a cero");
+        }
+        this.quantity += amount;
+    }
+    public void decreaseQuantity(int amount){
+        if(amount < 0){
+            throw new IllegalArgumentException("La cantidad debe ser mayor que cero");
+        }
+        if ((this.quantity - amount) < 0){
+            throw new IllegalArgumentException("No hay suficiente stock");
+        }
+        this.quantity -= amount;
+    }
 }
